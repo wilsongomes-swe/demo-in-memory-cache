@@ -3,8 +3,7 @@ Steps:
 - Inject it with DI: ```[FromServices]IMemoryCache cache```
 - Get the cached data or set it with GetOrCreate: (SlidingExpiration  or AbsoluteExpirationRelativeToNow to control the cache expiration)
 ```
-    public String Get([FromServices] IMemoryCache cache)
-    {
+      ...
       var date = cache.GetOrCreate("MyCacheKey", item =>
         {
           item.SlidingExpiration = TimeSpan.FromSeconds(1);
@@ -13,7 +12,5 @@ Steps:
           return DateTime.Now;
         }
       );
-
-      return date.ToLongTimeString();
-    }
+      ...
 ````
